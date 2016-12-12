@@ -1,0 +1,28 @@
+{
+  "name": "ionic-gulp-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "serve build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarden-liu/ionic-gulp-starter.git"
+  },
+  "keywords": [
+    "ionic",
+    "starter",
+    "gulp"
+  ],
+  "author": "jarden-liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarden-liu/ionic-gulp-starter/issues"
+  },
+  "homepage": "https://github.com/jarden-liu/ionic-gulp-starter#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7"
+  }
+}

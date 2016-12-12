@@ -1,0 +1,18 @@
+{
+  "name": "ionic-gulp-starter",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "jarden-liu"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ionic",
+    "starter",
+    "gulp"
+  ],
+  "homepage": "https://github.com/jarden-liu/ionic-gulp-starter",
+  "dependencies": {
+    "ionic": "^1.3.2"
+  }
+}

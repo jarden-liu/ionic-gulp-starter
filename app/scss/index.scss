@@ -1,0 +1,6 @@
+//scss主入口
+$positive: #38B2FF !default; // ionic的 positive 主题色
+
+
+@import "bower_components/ionic/scss/ionic";
+@import "./platform.scss";
