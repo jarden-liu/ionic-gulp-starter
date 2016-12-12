@@ -5,9 +5,11 @@ var gutil = require('gulp-util');
 
 
 exports.paths = {
-    app: 'app', //开发工程项目文件夹
+    src: 'app', //开发工程项目文件夹
     dist: 'www', //发布项目工程文件夹
-    tmp: '.dev' //调试项目工程文件夹
+    tmp: '.dev', //发布项目工程文件夹
+    lib: 'lib', //项目的额外包文件夹
+    img: 'img' //项目的图片文件夹
 };
 
 
@@ -19,4 +21,4 @@ exports.errorHandler = function(msg) {
         gutil.log(gutil.colors.red('[' + msg + ']'), err.toString());
         this.emit('end');
     };
-}；
+};
