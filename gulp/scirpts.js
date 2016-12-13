@@ -25,8 +25,8 @@ module.exports = {
 };
 
 
-gulp.task('scirpts', function() {
-    runSequence('bowerMerge', 'scirptsMerge');
+gulp.task('scirpts', function(callback) {
+    runSequence('bowerMerge', 'scirptsMerge',callback);
 });
 
 

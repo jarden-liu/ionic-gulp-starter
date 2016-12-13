@@ -26,7 +26,7 @@ gulp.task('templatecache', function() {
         }
     };
 
-    gulp.src(templatePath)
+    return gulp.src(templatePath)
         .pipe(f)
         .pipe(templateCache(options))
         .pipe(development(gulp.dest(path.join(paths.tmp))))

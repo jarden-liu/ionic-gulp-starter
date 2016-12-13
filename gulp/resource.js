@@ -7,6 +7,8 @@ var development = environments.development;
 var runSequence = require('run-sequence');
 var production = environments.production;
 var rename = require('gulp-rename');
+var replace = require('gulp-replace');
+
 
 var indexHtmlPath = path.join(paths.src, 'index.html');
 var libPath = path.join(paths.src, paths.lib, '**', '*');
@@ -23,13 +25,14 @@ module.exports = {
     fontPath: fontPath
 };
 
-gulp.task('res', function() {
-    runSequence('moveIndexHtml', 'moveLib', 'moveImage', 'moveFonts');
+gulp.task('res', function(callback) {
+    runSequence('moveIndexHtml', 'moveLib', 'moveImage', 'moveFonts',callback);
 });
 
 
 gulp.task('moveIndexHtml', function() {
     return gulp.src(indexHtmlPath)
+        // .pipe(production(replace(/js/,'')))
         .pipe(development(gulp.dest(path.join(paths.tmp))))
         .pipe(production(gulp.dest(path.join(paths.dist))));
 });
