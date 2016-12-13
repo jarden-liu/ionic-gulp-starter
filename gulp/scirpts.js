@@ -14,9 +14,15 @@ var cached = require('gulp-cached');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
 var bowerConfig = require('../bower.confg.js');
+var ngAnnotate = require('gulp-ng-annotate')
 
+var scirptPath = path.join(paths.src, "**", "*.js");
+var bowerLibPath = bowerConfig.paths;
 
-module.exports = 'scirpts';
+module.exports = {
+    scirptPath: scirptPath,
+    bowerLibPath: bowerLibPath
+};
 
 
 gulp.task('scirpts', function() {
@@ -25,14 +31,15 @@ gulp.task('scirpts', function() {
 
 
 gulp.task('scirptsMerge', function() {
-var f = gulpFilter('*/*app*.js');
+    var f = gulpFilter(['**', '!**/lib/**']);
 
-    return gulp.src(path.join(paths.src, "**", "*.js"))
+    return gulp.src(scirptPath)
         .pipe(f)
-        // .pipe(cached('scirptsMerge'))
-        // .pipe(remember('scirptsMerge'))
+        .pipe(cached('scirptsMerge'))
+        .pipe(remember('scirptsMerge'))
         .pipe(development(sourcemaps.init()))
         .pipe(concat('app.js'))
+        .pipe(production(ngAnnotate()))
         .pipe(production(uglify()))
         .pipe(development(sourcemaps.write('.')))
         .pipe(development(gulp.dest(path.join(paths.tmp))))
@@ -41,12 +48,12 @@ var f = gulpFilter('*/*app*.js');
 
 
 gulp.task('bowerMerge', function() {
-    return gulp.src(bowerConfig.paths)
+    return gulp.src(bowerLibPath)
         .pipe(cached('bowerMerge'))
         .pipe(remember('bowerMerge'))
         .pipe(development(sourcemaps.init()))
         .pipe(concat('vendor.js'))
-        .pipe(production(uglify()))
+        // .pipe(production(uglify()))
         .pipe(development(sourcemaps.write('.')))
         .pipe(development(gulp.dest(path.join(paths.tmp))))
         .pipe(production(gulp.dest(path.join(paths.dist))))

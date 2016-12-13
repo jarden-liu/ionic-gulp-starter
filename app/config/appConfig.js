@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('AppConfig', [])
-        .run(appConfig);
+        .config(appConfig);
 
     function appConfig($urlRouterProvider) {
       'ngInject';

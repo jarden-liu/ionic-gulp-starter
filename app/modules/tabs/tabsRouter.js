@@ -11,6 +11,7 @@
             templateUrl: 'tabs/tabs.html',
             controller: 'TabsCtrl'
         });
+        $urlRouterProvider.otherwise('/tab/dash');
     }
 
 })();

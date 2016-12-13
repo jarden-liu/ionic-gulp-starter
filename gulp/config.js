@@ -13,8 +13,8 @@ exports.paths = {
 };
 
 
-exports.dependencyDir = ['node_modules'];
-exports.bowerDir = ['bower_components'];
+exports.dependencyDir = 'node_modules';
+exports.bowerDir = 'bower_components';
 
 exports.errorHandler = function(msg) {
     return function(err) {

@@ -1,5 +1,5 @@
 (function() {
     'use strict';
-    angular.module('Starter', ['AppRun','AppConfig','Vendor','AppComponent','AppModules']);
+    angular.module('starter', ['Vendor','templates', 'AppRun', 'AppConfig', 'AppComponent', 'AppModules']);
 
 })();

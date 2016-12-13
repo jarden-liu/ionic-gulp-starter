@@ -5,6 +5,8 @@ var environments = require('gulp-environments');
 var development = environments.development;
 var production = environments.production;
 var runSequence = require('run-sequence');
+var webserver = require('gulp-webserver');
+var ip = require('ip');
 
 var clean = require('gulp-clean');
 
@@ -14,7 +16,7 @@ module.exports = 'server';
 
 gulp.task('server', function() {
     environments.current(development);
-    runSequence('cleanTemp', 'res', 'scss','scirpts');
+    runSequence('cleanTemp', 'res', 'scss', 'scirpts', 'templatecache', 'startServer','watch');
 });
 
 
@@ -23,4 +25,19 @@ gulp.task('cleanTemp', function() {
             read: false
         })
         .pipe(clean());
+});
+
+gulp.task('startServer', function() {
+    return gulp.src(paths.tmp)
+        .pipe(webserver({
+            host: ip.address(),
+            port: 8080,
+            livereload: true,
+            directoryListing: {
+                enable: false,
+                path: paths.tmp
+            },
+            // fallback:'index.html',
+            open: true
+        }));
 });

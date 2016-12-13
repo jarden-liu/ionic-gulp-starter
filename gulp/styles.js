@@ -13,11 +13,13 @@ var minifyCss = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 
-module.exports = 'scss';
+var scssPaths = path.join(paths.src, '**', '*.scss');
+module.exports = {
+    scssPaths: scssPaths
+};
 
 gulp.task('scss', function(done) {
-    var filterCss = gulpFilter('app.css');
-    return gulp.src(path.join(paths.src, '**', '*.scss'))
+    return gulp.src(scssPaths)
         .pipe(sass({
             errLogToConsole: true
         }))

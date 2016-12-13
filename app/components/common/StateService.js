@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('StateService', [])
-        .seivice(StateService);
+        .service('StateService',StateService);
 
     function StateService($ionicViewSwitcher, $state, $ionicHistory, $timeout) {
         'ngInject';

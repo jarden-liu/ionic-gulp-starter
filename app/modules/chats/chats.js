@@ -3,7 +3,8 @@
     angular.module('Chats', [
       'ChatsCtrl',
       'ChatsRouter',
-      'ChatsService'
+      'ChatsService',
+      'ChatDetail'
     ]);
 
 })();
