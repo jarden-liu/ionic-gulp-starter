@@ -9,6 +9,8 @@ var webserver = require('gulp-webserver');
 var ip = require('ip');
 
 var clean = require('gulp-clean');
+var gulpNgConfig = require('gulp-ng-config');
+var rename = require('gulp-rename');
 
 
 
@@ -16,7 +18,7 @@ module.exports = 'server';
 
 gulp.task('server', function() {
     environments.current(development);
-    runSequence('cleanTemp', 'res', 'scss', 'scirpts', 'templatecache', 'startServer','watch');
+    runSequence('cleanTemp', 'res', 'scss','setDevelopmentConfig','scirpts', 'templatecache', 'startServer','watch');
 });
 
 
@@ -40,4 +42,14 @@ gulp.task('startServer', function() {
             // fallback:'index.html',
             open: true
         }));
+});
+
+
+gulp.task('setDevelopmentConfig', function() {
+    return gulp.src(path.join(paths.src,'**','envConfig.dev.json'))
+        .pipe(gulpNgConfig('envConfig'))
+        .pipe(rename({
+            basename: 'envConfig'
+        }))
+        .pipe(gulp.dest(paths.src))
 });

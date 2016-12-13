@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('AppConfig', [])
+    angular.module('AppConfig', ['envConfig'])
         .config(appConfig);
 
     function appConfig($urlRouterProvider) {
