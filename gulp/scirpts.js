@@ -14,7 +14,8 @@ var cached = require('gulp-cached');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
 var bowerConfig = require('../bower.confg.js');
-var ngAnnotate = require('gulp-ng-annotate')
+var ngAnnotate = require('gulp-ng-annotate');
+var hash = require('gulp-hash');
 
 var scirptPath = path.join(paths.src, "**", "*.js");
 var bowerLibPath = bowerConfig.paths;
@@ -42,6 +43,7 @@ gulp.task('scirptsMerge', function() {
         .pipe(production(ngAnnotate()))
         .pipe(production(uglify()))
         .pipe(development(sourcemaps.write('.')))
+        .pipe(production(hash()))
         .pipe(development(gulp.dest(path.join(paths.tmp))))
         .pipe(production(gulp.dest(path.join(paths.dist))))
 });
@@ -54,6 +56,7 @@ gulp.task('bowerMerge', function() {
         .pipe(development(sourcemaps.init()))
         .pipe(concat('vendor.js'))
         // .pipe(production(uglify()))
+        .pipe(production(hash()))
         .pipe(development(sourcemaps.write('.')))
         .pipe(development(gulp.dest(path.join(paths.tmp))))
         .pipe(production(gulp.dest(path.join(paths.dist))))

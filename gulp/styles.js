@@ -12,28 +12,34 @@ var concat = require('gulp-concat');
 var minifyCss = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
+var clean = require('gulp-clean');
+var hash = require('gulp-hash');
 
 var scssPaths = path.join(paths.src, '**', '*.scss');
 module.exports = {
     scssPaths: scssPaths
 };
 
+gulp.task('styles', function(callback) {
+    runSequence('scss', callback);
+});
+
+
 gulp.task('scss', function(done) {
     return gulp.src(scssPaths)
         .pipe(sass({
             errLogToConsole: true
         }))
-        .pipe(sourcemaps.init())
+        .pipe(development(sourcemaps.init()))
         .pipe(concat('app.css'))
-        .pipe(sourcemaps.write('.'))
+        .pipe(production(hash()))
+        .pipe(development(sourcemaps.write('.')))
         .pipe(development(gulp.dest(path.join(paths.tmp, 'css'))))
-        .pipe(production(gulp.dest(path.join(paths.dist, 'css'))))
         .pipe(minifyCss({
             keepSpecialComments: 0
         }))
         .pipe(rename({
             extname: '.min.css'
         }))
-        .pipe(development(gulp.dest(path.join(paths.tmp, 'css'))))
         .pipe(production(gulp.dest(path.join(paths.dist, 'css'))));
 });

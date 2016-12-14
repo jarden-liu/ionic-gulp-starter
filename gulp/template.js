@@ -5,6 +5,7 @@ var environments = require('gulp-environments');
 var development = environments.development;
 var production = environments.production;
 var runSequence = require('run-sequence');
+var hash = require('gulp-hash');
 
 var gulpFilter = require('gulp-filter');
 var templateCache = require('gulp-angular-templatecache');
@@ -29,6 +30,7 @@ gulp.task('templatecache', function() {
     return gulp.src(templatePath)
         .pipe(f)
         .pipe(templateCache(options))
+        .pipe(production(hash()))
         .pipe(development(gulp.dest(path.join(paths.tmp))))
         .pipe(production(gulp.dest(path.join(paths.dist))))
 });

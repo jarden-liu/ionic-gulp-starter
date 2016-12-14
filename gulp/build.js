@@ -18,7 +18,7 @@ module.exports = 'build';
 
 gulp.task('build', function(callback) {
     environments.current(production);
-    runSequence('cleanDist', 'res', 'scss','setEnvConfig','scirpts', 'templatecache',callback);
+    runSequence('cleanDist', 'res', 'styles', 'setEnvConfig', 'scirpts', 'templatecache', 'inject', callback);
 });
 
 
