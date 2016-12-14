@@ -59,10 +59,9 @@ gulp.task('injectFiles', function() {
         .pipe(inject(sources, {
             transform: function(filepath) {
                 var type = path.extname(filepath).substring(1);
-                var newFilePath = filepath.replace(path.join(dirPath, ' ').trim(), '');
-                if (newFilePath[0] == path.join(' ',' ').trim()) {
-                    newFilePath = newFilePath.replace(newFilePath[0], '');
-                }
+                var dirPathLength = dirPath.length || 0;
+                var index = filepath.indexOf(dirPath)+dirPathLength+1;
+                var newFilePath = filepath.substring(index);
                 return inject.transform.html[type](newFilePath);
             }
         }))
